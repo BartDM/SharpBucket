@@ -29,20 +29,32 @@ namespace SharpBucket.V2.EndPoints
         /// Initializes a new instance of <see cref="EndPoint"/> from scratch.
         /// This is the constructor to use for EndPoint classes.
         /// </summary>
-        protected EndPoint(ISharpBucketRequesterV2 sharpBucketV2, string resourcePath)
+        protected EndPoint(ISharpBucketRequesterV2 sharpBucketV2, string resourcePath, bool trim = true)
         {
             this.SharpBucketV2 = sharpBucketV2 ?? throw new ArgumentNullException(nameof(sharpBucketV2));
-            BaseUrl = resourcePath.Trim('/');
+            if (trim)
+            {
+                BaseUrl = resourcePath.Trim('/');
+            }
+            BaseUrl = resourcePath;
         }
 
         /// <summary>
         /// Initializes a new instance of <see cref="EndPoint"/> from a parent <see cref="EndPoint"/>.
         /// This is the constructor to use for Resources classes.
         /// </summary>
-        protected EndPoint(EndPoint parentEndPoint, string resourcePathFromParent)
+        protected EndPoint(EndPoint parentEndPoint, string resourcePathFromParent, bool trim = true)
         {
             SharpBucketV2 = parentEndPoint.SharpBucketV2;
-            BaseUrl = parentEndPoint.BaseUrl + "/" + resourcePathFromParent.Trim('/');
+            if (trim)
+            {
+                BaseUrl = parentEndPoint.BaseUrl + "/" + resourcePathFromParent.Trim('/');
+            }
+            else
+            {
+                BaseUrl = parentEndPoint.BaseUrl + "/" + resourcePathFromParent;
+
+            }
         }
 
         /// <summary>

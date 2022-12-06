@@ -38,5 +38,6 @@ namespace SharpBucket.V2
         /// Get the Workspaces endpoint.
         /// </summary>
         WorkspacesEndPoint WorkspacesEndPoint();
+        
     }
 }

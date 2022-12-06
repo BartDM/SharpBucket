@@ -178,6 +178,15 @@ namespace SharpBucket.V2.EndPoints
             => this._branchesResource ??= new BranchResource(this);
 
         #endregion
+        
+        #region PipelineResource
+
+        private PipelineResource _pipelineResource;
+
+        public PipelineResource PipelineResource
+            => this._pipelineResource ??= new PipelineResource(this);
+        
+        #endregion
 
         #region Pull Requests Resource
 
